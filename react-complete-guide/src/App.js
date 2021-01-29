@@ -1,14 +1,17 @@
 import { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   state = {
-    persons: [
-      {name: "Anu", age: 22},
-      {name: "Sasha", age: 22},
-      {name: "Roman Reigns", age: 36}
-    ]
+    // persons: [
+    //   {name: "Anu", age: 22},
+    //   {name: "Sasha", age: 22},
+    //   {name: "Roman Reigns", age: 36}
+    // ],
+    userName: "Anupam"
   }
 
   switchNameHandler = (firstName)=> {
@@ -31,6 +34,12 @@ class App extends Component {
     });
   }
 
+  userNameHandler = (event)=> {
+    this.setState({
+      userName: event.target.value
+    });
+  }
+
   render() { 
     const style = {
       backgroundColor : 'olive',
@@ -45,9 +54,12 @@ class App extends Component {
     <div className="App">
       <h2>Hi I am react app!</h2>
       <button style = {style} onClick={this.switchNameHandler.bind(this, 'Awesomeness!!!')}>Switch Names</button>
-      <Person name={this.state.persons[0].name} age= {this.state.persons[0].age}></Person>
+      {/* <Person name={this.state.persons[0].name} age= {this.state.persons[0].age}></Person>
       <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click = {() => this.switchNameHandler('Fab!')}>Hobbies: Eating</Person>
-      <Person name={this.state.persons[2].name} age= {this.state.persons[2].age} changed={this.nameChangedHandler}></Person>
+      <Person name={this.state.persons[2].name} age= {this.state.persons[2].age} changed={this.nameChangedHandler}></Person> */}
+      <UserOutput name= {this.state.userName}></UserOutput>
+      <UserOutput name= {this.state.userName}></UserOutput>
+      <UserInput userNameChanged={this.userNameHandler} currentName={this.state.userName}/>
     </div>
   );}
  
